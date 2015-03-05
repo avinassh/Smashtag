@@ -51,7 +51,17 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    // MARK: - Text field delegate methods
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == searchTextField {
+            // make the keyboard hide/dissapear
+            textField.resignFirstResponder()
+            searchText = textField.text
+        }
+        return true
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
