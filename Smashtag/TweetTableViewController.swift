@@ -14,32 +14,24 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var searchTextField: UITextField! {
         didSet {
             searchTextField.delegate = self
+            searchTextField.text = searchText
         }
     }
     
-
-    
+    var searchText: String? = "#stanford" {
+        didSet {
+            searchTextField?.text = searchText
+            tweets.removeAll()
+            tableView.reloadData()
+            refresh()
+        }
+    }
     // model of the project
     var tweets = [[Tweet]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // create a TwitterRequest and then fetch it
-        let request = TwitterRequest(search: "#stanford", count: 100)
-        request.fetchTweets { (newTweets) -> Void in
-            // following is mainly UI code. so better dispatch it back to main 
-            // queue. Or else lots of bad things will happen 😨
-            dispatch_async(dispatch_get_main_queue()) {
-                if newTweets.count > 0 {
-                    self.tweets.insert(newTweets, atIndex: 0)
-                    // reloads the whole table instead we could reload only 
-                    // this section
-                    self.tableView.reloadData()
-                }
-            }
-        }
-        
+        refresh()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -50,6 +42,25 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func refresh() {
+        if searchText != nil {
+            // create a TwitterRequest and then fetch it
+            let request = TwitterRequest(search: searchText!, count: 100)
+            request.fetchTweets { (newTweets) -> Void in
+                // following is mainly UI code. so better dispatch it back to main
+                // queue. Or else lots of bad things will happen 😨
+                dispatch_async(dispatch_get_main_queue()) {
+                    if newTweets.count > 0 {
+                        self.tweets.insert(newTweets, atIndex: 0)
+                        // reloads the whole table instead we could reload only
+                        // this section
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Text field delegate methods
