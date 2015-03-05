@@ -9,7 +9,10 @@
 import UIKit
 
 class TweetTableViewController: UITableViewController {
-
+    
+    // model of the project
+    var tweets = [[Tweet]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

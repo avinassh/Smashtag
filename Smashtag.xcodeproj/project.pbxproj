@@ -13,6 +13,10 @@
 		82D0360C1AA5D65B005D4399 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D0360A1AA5D65B005D4399 /* LaunchScreen.xib */; };
 		82D036181AA5D65B005D4399 /* SmashtagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D036171AA5D65B005D4399 /* SmashtagTests.swift */; };
 		82D036221AA5D6C0005D4399 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D036211AA5D6C0005D4399 /* TweetTableViewController.swift */; };
+		82ED7FE31AA8215E001AC49B /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED7FDF1AA8215E001AC49B /* MediaItem.swift */; };
+		82ED7FE41AA8215E001AC49B /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED7FE01AA8215E001AC49B /* Tweet.swift */; };
+		82ED7FE51AA8215E001AC49B /* TwitterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED7FE11AA8215E001AC49B /* TwitterRequest.swift */; };
+		82ED7FE61AA8215E001AC49B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED7FE21AA8215E001AC49B /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		82D036161AA5D65B005D4399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82D036171AA5D65B005D4399 /* SmashtagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmashtagTests.swift; sourceTree = "<group>"; };
 		82D036211AA5D6C0005D4399 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
+		82ED7FDF1AA8215E001AC49B /* MediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
+		82ED7FE01AA8215E001AC49B /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		82ED7FE11AA8215E001AC49B /* TwitterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterRequest.swift; sourceTree = "<group>"; };
+		82ED7FE21AA8215E001AC49B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 				82D036051AA5D65B005D4399 /* Main.storyboard */,
 				82D036081AA5D65B005D4399 /* Images.xcassets */,
 				82D0360A1AA5D65B005D4399 /* LaunchScreen.xib */,
+				82ED7FDE1AA8215E001AC49B /* Twitter */,
 				82D035FF1AA5D65B005D4399 /* Supporting Files */,
 			);
 			path = Smashtag;
@@ -110,6 +119,17 @@
 				82D036161AA5D65B005D4399 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82ED7FDE1AA8215E001AC49B /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				82ED7FDF1AA8215E001AC49B /* MediaItem.swift */,
+				82ED7FE01AA8215E001AC49B /* Tweet.swift */,
+				82ED7FE11AA8215E001AC49B /* TwitterRequest.swift */,
+				82ED7FE21AA8215E001AC49B /* User.swift */,
+			);
+			path = Twitter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +233,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				82D036221AA5D6C0005D4399 /* TweetTableViewController.swift in Sources */,
+				82ED7FE51AA8215E001AC49B /* TwitterRequest.swift in Sources */,
+				82ED7FE61AA8215E001AC49B /* User.swift in Sources */,
 				82D036021AA5D65B005D4399 /* AppDelegate.swift in Sources */,
+				82ED7FE31AA8215E001AC49B /* MediaItem.swift in Sources */,
+				82ED7FE41AA8215E001AC49B /* Tweet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +431,7 @@
 				82D0361D1AA5D65B005D4399 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82D0361E1AA5D65B005D4399 /* Build configuration list for PBXNativeTarget "SmashtagTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +440,7 @@
 				82D036201AA5D65B005D4399 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
