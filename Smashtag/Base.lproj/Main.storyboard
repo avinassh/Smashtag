@@ -58,7 +58,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="tweetImageView" destination="lC7-xX-2IO" id="ARB-Bs-SSQ"/>
+                                    <outlet property="tweetProfileImageView" destination="lC7-xX-2IO" id="LOD-D1-iiI"/>
                                     <outlet property="tweetScreenNameLabel" destination="mdl-Xk-7p3" id="Gdl-Dw-AS3"/>
                                     <outlet property="tweetTextLabel" destination="Dbx-A8-mY9" id="qOV-uu-DHa"/>
                                 </connections>
