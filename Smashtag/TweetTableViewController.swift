@@ -8,7 +8,16 @@
 
 import UIKit
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
+    
+    
+    @IBOutlet weak var searchTextField: UITextField! {
+        didSet {
+            searchTextField.delegate = self
+        }
+    }
+    
+
     
     // model of the project
     var tweets = [[Tweet]]()
