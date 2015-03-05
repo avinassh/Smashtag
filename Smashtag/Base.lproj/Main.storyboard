@@ -16,7 +16,7 @@
                             <rect key="frame" x="0.0" y="-30" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="twitter"/>
                         </textField>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" textLabel="1hg-pR-ILa" detailTextLabel="uTZ-dx-ACp" style="IBUITableViewCellStyleSubtitle" id="5XS-dE-cUj">
