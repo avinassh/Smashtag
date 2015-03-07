@@ -32,6 +32,13 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
+        
+        // using resizable custom cells
+        // first lets give estimated row height, from storyboard
+        tableView.estimatedRowHeight = tableView.rowHeight
+        // now reset it's height and let it figure out by itself
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
