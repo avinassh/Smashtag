@@ -29,6 +29,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     // model of the project
     var tweets = [[Tweet]]()
     
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
