@@ -24,13 +24,64 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             tweets.removeAll()
             tableView.reloadData()
             refresh()
+            // reset the lastSuccessfulRequest since the search text is changed
+            // and it doesn't matter anymore
+            lastSuccessfulRequest = nil
         }
     }
     // model of the project
     var tweets = [[Tweet]]()
     
     
-    @IBAction func refresh(sender: UIRefreshControl) {
+    var lastSuccessfulRequest: TwitterRequest?
+    var nextRequestToAttempt: TwitterRequest? {
+        if lastSuccessfulRequest == nil {
+            if searchText != nil {
+                return TwitterRequest(search: searchText!, count: 100)
+            } else {
+                return nil
+            }
+        } else {
+            return lastSuccessfulRequest!.requestForNewer
+        }
+    }
+    
+    @IBAction func refresh(sender: UIRefreshControl?) {
+        if searchText != nil {
+            // create a TwitterRequest and then fetch it
+            if let request = nextRequestToAttempt {
+                request.fetchTweets { (newTweets) -> Void in
+                    // following is mainly UI code. so better dispatch it back to main
+                    // queue. Or else lots of bad things will happen 😨
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if newTweets.count > 0 {
+                            self.tweets.insert(newTweets, atIndex: 0)
+                            // reloads the whole table instead we could reload only
+                            // this section
+                            self.tableView.reloadData()
+                            // since this request is successul, so lets it to
+                            // lastSuccessfulRequest
+                            self.lastSuccessfulRequest = request
+                        }
+                        // stop the spinning wheel
+                        sender?.endRefreshing()
+                    }
+                }
+            }
+        } else {
+            // if search text is nil, lets stop is spinning.
+            sender?.endRefreshing()
+        }
+    }
+    
+    private func refresh() {
+        // even when we call this refresh() function from code, it will
+        // still work
+        // so lets spin it, when its called from the code
+        if refreshControl != nil {
+            refreshControl?.beginRefreshing()
+        }
+        refresh(refreshControl)
     }
     
     override func viewDidLoad() {
@@ -55,24 +106,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    private func refresh() {
-        if searchText != nil {
-            // create a TwitterRequest and then fetch it
-            let request = TwitterRequest(search: searchText!, count: 100)
-            request.fetchTweets { (newTweets) -> Void in
-                // following is mainly UI code. so better dispatch it back to main
-                // queue. Or else lots of bad things will happen 😨
-                dispatch_async(dispatch_get_main_queue()) {
-                    if newTweets.count > 0 {
-                        self.tweets.insert(newTweets, atIndex: 0)
-                        // reloads the whole table instead we could reload only
-                        // this section
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
-    }
     
     // MARK: - Text field delegate methods
     func textFieldShouldReturn(textField: UITextField) -> Bool {
