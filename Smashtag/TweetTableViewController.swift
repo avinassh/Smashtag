@@ -23,10 +23,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             searchTextField?.text = searchText
             tweets.removeAll()
             tableView.reloadData()
-            refresh()
             // reset the lastSuccessfulRequest since the search text is changed
             // and it doesn't matter anymore
+            // it's important to reset this before calling refresh
             lastSuccessfulRequest = nil
+            refresh()
         }
     }
     // model of the project
